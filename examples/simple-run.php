@@ -15,17 +15,20 @@ $logger = new Logger('swarm_logger');
 $swarmProcess = new SwarmProcess($logger);
 
 // Add a few things to do:
-$swarmProcess->pushNativeCommandOnQueue('sleep 9');
-$swarmProcess->pushNativeCommandOnQueue('sleep 8');
-$swarmProcess->pushNativeCommandOnQueue('sleep 7');
-$swarmProcess->pushNativeCommandOnQueue('sleep 6');
-$swarmProcess->pushNativeCommandOnQueue('sleep 5');
-$swarmProcess->pushNativeCommandOnQueue('sleep 5');
-$swarmProcess->pushNativeCommandOnQueue('sleep 4');
-$swarmProcess->pushNativeCommandOnQueue('sleep 3');
+//$swarmProcess->pushNativeCommandOnQueue('sleep 9');
+//$swarmProcess->pushNativeCommandOnQueue('sleep 8');
+//$swarmProcess->pushNativeCommandOnQueue('sleep 7');
+//$swarmProcess->pushNativeCommandOnQueue('sleep 6');
+//$swarmProcess->pushNativeCommandOnQueue('sleep 5');
+//$swarmProcess->pushNativeCommandOnQueue('sleep 5');
+//$swarmProcess->pushNativeCommandOnQueue('sleep 4');
+//$swarmProcess->pushNativeCommandOnQueue('sleep 3');
 $swarmProcess->pushNativeCommandOnQueue('sleep 2');
 $swarmProcess->pushNativeCommandOnQueue('sleep 1');
+$swarmProcess->pushNativeCommandOnQueue('ls');
 
 $swarmProcess->setMaxRunStackSize(4);
 
 $swarmProcess->run();
+
+$swarmProcess->getFailedCommands();
