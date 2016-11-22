@@ -2,6 +2,23 @@
 [![Latest Stable Version](https://poser.pugx.org/afrihost/swarm-process/v/stable)](https://packagist.org/packages/afrihost/swarm-process) [![Total Downloads](https://poser.pugx.org/afrihost/swarm-process/downloads)](https://packagist.org/packages/afrihost/swarm-process) [![Latest Unstable Version](https://poser.pugx.org/afrihost/swarm-process/v/unstable)](https://packagist.org/packages/afrihost/swarm-process) [![License](https://poser.pugx.org/afrihost/swarm-process/license)](https://packagist.org/packages/afrihost/swarm-process)
 [![Build Status](https://travis-ci.org/afrihost/swarm-process.svg?branch=master)](https://travis-ci.org/afrihost/swarm-process)
 
+
+###In examples you will find three new files:
+
+**outie-pause.php:**
+
+This contains a code example of stopping and starting the loading of new processes to be ran
+
+
+**outie-scale.php**
+
+This contains a code example of a process that will use the load average data given by the OS to scale the amount of available slots that can run processes.
+
+**outie-halt.php**
+
+This code example will stop any new processess from being ran, and return you an array of all the processes that failed to be processed.
+
+
 ### What and Why
 
 A process handler that runs concurrent processes keeping maximum in mind, and re-using slots until the list of processes are done. 
