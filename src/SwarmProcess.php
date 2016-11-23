@@ -50,6 +50,10 @@ class SwarmProcess extends SwarmProcessBase
      */
     protected $amountCompleted = 0;
 
+protected $maxReadKBs = 0;
+
+protected $maxWriteKBs = 0;
+
     /**
      * Runs all the processes, not going over the maxRunStackSize, and continuing until all processes in the processingStack has run their course.
      *
@@ -259,16 +263,18 @@ class SwarmProcess extends SwarmProcessBase
          * I unfortunately don't have a windows machine available to test Windows CPU load on.
          *
         */
-        if (stristr(PHP_OS, 'win')) {
-            $this->setAutoStackSizeScaling(false);
-            return;
-        } else {
-            //Get the lead average
+        if (is_file('/proc/cpuinfo')) {
+
+            //Get the load average
             $exec_loads = sys_getloadavg();
             //Gets amount of processors
             $coreCount = trim(shell_exec("grep -P '^processor' /proc/cpuinfo|wc -l"));
             //Get the load average as a percentage;
             $cpu = round($exec_loads[1] / ($coreCount + 1) * 100, 0);
+        } else {
+            $this->logger->debug("System does not support the features need for auto scaling");
+            $this->setAutoStackSizeScaling(false);
+            return;
         }
         //Only change the stack size if the process is running
         if ($this->keepGoing) {
@@ -416,6 +422,9 @@ class SwarmProcess extends SwarmProcessBase
         return $this->amountCompleted;
     }
 
+
+
+
     public function stopAndReturnUnfinished()
     {
         //Stop adding new things to the processing queue
@@ -427,6 +436,38 @@ class SwarmProcess extends SwarmProcessBase
         $this->logger->debug('Stopping processing and returning unfinished processes');
         //Return the copy of the unfinished processes
         return $queue;
+    }
+
+
+    /**
+     * @return int
+     */
+    public function getMaxReadKBs()
+    {
+        return $this->maxReadKBs;
+    }
+
+    /**
+     * @param int $maxReadKBs
+     */
+    public function setMaxReadKBs($maxReadKBs)
+    {
+        $this->maxReadKBs = $maxReadKBs;
+    }
+    /**
+     * @return int
+     */
+    public function getMaxWriteKBs()
+    {
+        return $this->maxWriteKBs;
+    }
+
+    /**
+     * @param int $maxWriteKBs
+     */
+    public function setMaxWriteKBs($maxWriteKBs)
+    {
+        $this->maxWriteKBs = $maxWriteKBs;
     }
 
 }

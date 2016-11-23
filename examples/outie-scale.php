@@ -60,7 +60,8 @@ $swarmProcess->setMaxRunStackSize(1);
 $swarmProcess->setAutoStackSizeScaling(true);
 $swarmProcess->getScalingUpperBound();
 $swarmProcess->setScalingBounds(5,7);
-
+$swarmProcess->setMaxReadKBs(250);
+$swarmProcess->setMaxWriteKBs(250);
 $swarmProcess->run();
 //Grab any commands that failed and log them
 foreach ($swarmProcess->getFailedCommands() as $failure) {
