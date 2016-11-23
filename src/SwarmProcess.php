@@ -50,10 +50,6 @@ class SwarmProcess extends SwarmProcessBase
      */
     protected $amountCompleted = 0;
 
-protected $maxReadKBs = 0;
-
-protected $maxWriteKBs = 0;
-
     /**
      * Runs all the processes, not going over the maxRunStackSize, and continuing until all processes in the processingStack has run their course.
      *
@@ -436,38 +432,6 @@ protected $maxWriteKBs = 0;
         $this->logger->debug('Stopping processing and returning unfinished processes');
         //Return the copy of the unfinished processes
         return $queue;
-    }
-
-
-    /**
-     * @return int
-     */
-    public function getMaxReadKBs()
-    {
-        return $this->maxReadKBs;
-    }
-
-    /**
-     * @param int $maxReadKBs
-     */
-    public function setMaxReadKBs($maxReadKBs)
-    {
-        $this->maxReadKBs = $maxReadKBs;
-    }
-    /**
-     * @return int
-     */
-    public function getMaxWriteKBs()
-    {
-        return $this->maxWriteKBs;
-    }
-
-    /**
-     * @param int $maxWriteKBs
-     */
-    public function setMaxWriteKBs($maxWriteKBs)
-    {
-        $this->maxWriteKBs = $maxWriteKBs;
     }
 
 }
