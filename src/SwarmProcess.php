@@ -273,12 +273,12 @@ class SwarmProcess extends SwarmProcessBase
         //Only change the stack size if the process is running
         if ($this->keepGoing) {
             $this->logger->debug("Average CPU load average:  $cpu%");
-            if ($cpu > 95) {
+            if ($cpu > 85) {
                 $this->decreaseMaxRunStackSize(1);
-            } elseif ($cpu < 50) {
+            } elseif ($cpu < 40) {
                 //If CPU load isn't very high, increase the RunStackSize quicker
                 $this->increaseMaxRunStackSize(5);
-            } elseif ($cpu < 80) {
+            } elseif ($cpu < 75) {
                 $this->increaseMaxRunStackSize(1);
             }
         }
